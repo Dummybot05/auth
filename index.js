@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', async (req, res) => {
-  res.send(users);
+  res.send("Hello, world!");
 });
 
 app.post('/api/signup', async (req, res) => {
