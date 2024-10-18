@@ -32,7 +32,7 @@ app.post('/api/signup', async (req, res) => {
       try {
         const result = await sql`INSERT INTO auth(uuid, username, email, password) VALUES (${newUser.uuid}, ${newUser.username}, ${newUser.email}, ${newUser.password})`;
         if (result) {
-          return res.send("Insert Successfull");
+          res.json({ "message" : "Insert Successfull" });
         }
       } catch (error) {
         console.log(error);
@@ -52,7 +52,7 @@ app.post('/api/signin', async (req, res) => {
   try {
     const decryptPassword = await bcrypt.compare(password, userExists[0].password);
     if (decryptPassword) {
-      return res.send("Login Successfull");
+      res.json({ "message" : "Login Successfull" });
     }
   } catch (error) {
     console.log(error)
