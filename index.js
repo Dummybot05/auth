@@ -3,11 +3,13 @@ import bcrypt from 'bcrypt';
 import { config } from "dotenv";
 import { neon } from "@neondatabase/serverless";
 import { v4 as uuidv4 } from 'uuid';
+import cors from "cors";
 config();
 
 const sql = neon(process.env.DATABASE_URL);
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.get('/', async (req, res) => {
   res.send("Hello, world!");
