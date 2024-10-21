@@ -29,7 +29,7 @@ app.post('/api/signup', async (req, res) => {
     const userExists = await sql`SELECT * FROM auth WHERE username = ${username} OR email = ${email}`;
     console.log(userExists);
     if (!(userExists.length === 0)) {
-      return res.send('Username or email already exists');
+      return res.json({ "message" : "Username or email already exists" });
     }
     try {
       const hashPassword = await bcrypt.hash(password, 10);
