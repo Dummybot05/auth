@@ -9,7 +9,15 @@ config();
 const sql = neon(process.env.DATABASE_URL);
 const app = express();
 app.use(express.json());
-app.use(cors())
+
+// CORS configuration
+const corsOptions = {
+  origin: '*', // or replace with specific origins like 'http://example.com'
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 app.get('/', async (req, res) => {
   res.send("Hello, world!");
